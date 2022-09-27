@@ -1,5 +1,31 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { persistReducer, persistStore } from 'redux-persist';
+import { REHYDRATE, PERSIST } from 'redux-persist/es/constants';
+import storage from 'redux-persist/lib/storage';
 
-export const store = configureStore({
-    reducer: {},
+import signInSlice from 'pages/SignIn/reducer';
+
+const rootReducer = combineReducers({
+    signIn: signInSlice,
 });
+
+const persistConfig = {
+    key: 'root',
+    storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [REHYDRATE, PERSIST],
+            },
+        }),
+});
+
+const persistor = persistStore(store);
+
+export { store, persistor };
