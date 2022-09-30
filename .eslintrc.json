@@ -46,7 +46,7 @@
         "no-unused-vars": "off",
         "operator-linebreak": "off",
         "implicit-arrow-linebreak": "off",
-        "no-param-reassign": "off"
-
+        "no-param-reassign": "off",
+        "eslint linebreak-style": ["error", "widnows"]
     }
 }

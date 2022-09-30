@@ -4,9 +4,11 @@ import { REHYDRATE, PERSIST } from 'redux-persist/es/constants';
 import storage from 'redux-persist/lib/storage';
 
 import signInSlice from 'pages/SignIn/reducer';
+import shopSlice from 'pages/Goods/reducer';
 
 const rootReducer = combineReducers({
     signIn: signInSlice,
+    shop: shopSlice,
 });
 
 const persistConfig = {
