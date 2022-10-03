@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, ReactNode } from 'react';
+import { ReactNode, ChangeEvent } from 'react';
 import { SelectChangeEvent } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -16,6 +16,7 @@ import Tooltip from 'components/styled/Auth/AuthTooltip';
 import ButtonVisibility from 'components/styled/Auth/VisibilityButton';
 
 import { useVisibility } from 'hooks';
+import { TEXT } from 'constants/text';
 
 import { AuthFormsProps } from 'types/AuthFormsProps';
 import { UserTypesToSignUp } from 'pages/SignUp/types/UserTypesToSignUp';
@@ -36,7 +37,7 @@ interface SignUpFormTypes extends UserTypesToSignUp {
 interface SignUpFormProps extends AuthFormsProps {
     form: SignUpFormTypes;
     handleChange: (
-        event: BaseSyntheticEvent | SelectChangeEvent<unknown>,
+        event: ChangeEvent | SelectChangeEvent<unknown>,
         child?: ReactNode
     ) => void;
 }
@@ -112,7 +113,7 @@ const SignUpForm = ({
                     />
                 </FormControl>
                 <FormControl>
-                    <Tooltip title="Password have to include 1 uppercase latter 1 lowercase letter 1 digit. Minimum 8 symbols">
+                    <Tooltip title={TEXT.PASSWORD_PROMPT}>
                         <QuestionMarkIcon />
                     </Tooltip>
                     <FormInput

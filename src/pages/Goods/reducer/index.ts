@@ -1,27 +1,44 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { api } from 'api/apiConfig';
-// TODO: add correct types
+
+import { Products } from 'pages/Goods/types/Prducts';
+
+import { getProducts } from 'pages/Goods/api/getProducts';
+
 interface ShopInitialState {
-    data: any;
+    data: Products | null;
     errors: any;
     isLoading: boolean;
+    page: number;
 }
 
 const initialState: ShopInitialState = {
     errors: null,
     data: null,
     isLoading: false,
+    page: 1,
 };
 
 export const loadProducts = createAsyncThunk(
     'shop/loadProducts',
-    (page: number) => api.get(`/products?page=${page}&limit=15`)
+    async (page: number, { rejectWithValue }): Promise<Products | any> => {
+        try {
+            const response = await getProducts(page);
+
+            return response;
+        } catch (error) {
+            return rejectWithValue(error);
+        }
+    }
 );
 
 const shopSlice = createSlice({
     name: 'shop',
     initialState,
-    reducers: {},
+    reducers: {
+        savePreviousPage: (state, { payload: page }) => {
+            state.page = page;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(loadProducts.pending, (state) => {
             state.isLoading = true;
@@ -39,5 +56,7 @@ const shopSlice = createSlice({
         });
     },
 });
+
+export const { savePreviousPage } = shopSlice.actions;
 
 export default shopSlice.reducer;

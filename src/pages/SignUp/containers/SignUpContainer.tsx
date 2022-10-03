@@ -13,6 +13,7 @@ import { signUp } from 'pages/SignUp/api/signUp';
 
 import { ROUTE_NAMES } from 'router/routeNames';
 import { UserScheme } from 'scheme/UserScheme';
+import { TEXT } from 'constants/text';
 
 import { UserTypesToSignUp } from 'pages/SignUp/types/UserTypesToSignUp';
 import { SignUpResponse } from 'pages/SignUp/types/SignUpResponse';
@@ -90,10 +91,8 @@ const SignUpContainer = (): JSX.Element => {
                     title="Already have an account?"
                     buttonText="Login Now"
                     routeTo={ROUTE_NAMES.SIGN_IN}
-                >
-                    There are advances being made in science and technology
-                    everyday, and a good example of this is the
-                </AuthBanner>
+                    innerText={TEXT.AUTH_BANNER}
+                />
                 <SignUpForm
                     form={values}
                     handleChange={handleChange}

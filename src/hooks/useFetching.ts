@@ -1,13 +1,13 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
 
 export const useFetching = <RequestBody, Response>(
-    callback: (userData?: RequestBody) => Promise<Response>,
+    callback: (userData?: RequestBody) => Promise<AxiosResponse<Response>>,
     isLoadOnMount: boolean = true
 ) => {
     const [data, setData] = useState<Response | null>(null);
     const [isLoading, setLoading] = useState<boolean>(false);
-    const [requestError, setRequestError] = useState<any | null>(null);
+    const [requestError, setRequestError] = useState<any>(null);
 
     const makeRequest = async (requestBody?: RequestBody): Promise<void> => {
         setLoading(true);
@@ -17,7 +17,7 @@ export const useFetching = <RequestBody, Response>(
             });
             const response = await callback(requestBody);
             setRequestError(null);
-            setData(response);
+            setData(response.data);
         } catch (error) {
             setData(null);
             if (axios.isAxiosError(error)) {

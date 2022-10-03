@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent } from 'react';
+import { ChangeEvent } from 'react';
 import styled from '@emotion/styled';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -30,7 +30,7 @@ const Wrapper = styled.div`
 
 interface SignInFormProps extends AuthFormsProps {
     values: SignInTypes;
-    handleChange: (event: BaseSyntheticEvent) => void;
+    handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SignInForm = ({

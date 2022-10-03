@@ -2,12 +2,13 @@ import styled from '@emotion/styled';
 
 import Typography from 'components/Typography';
 
+import 'static/fonts/fonts.scss';
 import colors from 'static/colors/colors.scss';
 
 interface BlockHeaderProps {
-    image?: string;
     title: string;
     text: string;
+    image?: string;
 }
 
 const Title = styled(Typography)`

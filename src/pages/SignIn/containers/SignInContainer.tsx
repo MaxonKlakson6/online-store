@@ -11,6 +11,8 @@ import AuthHolder from 'components/styled/Auth/AuthHolder';
 
 import { LoginScheme } from 'scheme/LoginScheme';
 import { ROUTE_NAMES } from 'router/routeNames';
+import { TEXT } from 'constants/text';
+
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { login, resetLogin } from 'pages/SignIn/reducer';
 
@@ -18,7 +20,7 @@ const SignInContainer = (): JSX.Element => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const { data, isLoading, error, isLogin } = useAppSelector(
+    const { data, isLoading, error, isLogin, isAuth } = useAppSelector(
         (state) => state.signIn
     );
 
@@ -52,7 +54,7 @@ const SignInContainer = (): JSX.Element => {
                 }
             );
             timeout = setTimeout(() => {
-                navigate(ROUTE_NAMES.HOME);
+                navigate(ROUTE_NAMES.PRODUCTS);
                 dispatch(resetLogin());
             }, 3000);
         }
@@ -67,6 +69,12 @@ const SignInContainer = (): JSX.Element => {
         }
     }, [error]);
 
+    useEffect(() => {
+        if (isAuth) {
+            navigate(ROUTE_NAMES.PRODUCTS);
+        }
+    }, []);
+
     return (
         <>
             <ToastContainer
@@ -80,10 +88,8 @@ const SignInContainer = (): JSX.Element => {
                         title="New to our website?"
                         buttonText="Create an account"
                         routeTo={ROUTE_NAMES.SIGN_UP}
-                    >
-                        There are advances being made in science and technology
-                        everyday, and a good example of this is the
-                    </AuthBanner>
+                        innerText={TEXT.AUTH_BANNER}
+                    />
                     <SignInForm
                         values={values}
                         handleChange={handleChange}

@@ -1,5 +1,7 @@
 import * as yup from 'yup';
 
+import { REGEXP } from 'constants/regexp';
+
 export const LoginScheme = yup.object().shape({
     email: yup
         .string()
@@ -8,9 +10,6 @@ export const LoginScheme = yup.object().shape({
     password: yup
         .string()
         .min(8, 'Minimum 8 symbols')
-        .matches(
-            /(?=[A-Za-z0-9]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/,
-            'Incorrect password'
-        )
+        .matches(REGEXP.PASSWORD_VALIDATION, 'Incorrect password')
         .required('Password is required'),
 });

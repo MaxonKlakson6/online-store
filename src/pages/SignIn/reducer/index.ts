@@ -39,7 +39,7 @@ export const login = createAsyncThunk(
 
             await response;
 
-            return response;
+            return response as Promise<ResponseType>;
         } catch (error) {
             return rejectWithValue(error);
         }
@@ -60,14 +60,8 @@ const signInSlice = createSlice({
             state.isLoading = true;
         });
         builder.addCase(login.fulfilled, (state, { payload: response }) => {
-            const {
-                address,
-                roles,
-                __v,
-                gender,
-                accessToken,
-                ...requiredData
-            } = response;
+            const { address, roles, __v, accessToken, ...requiredData } =
+                response;
             state.isLoading = false;
             state.data = requiredData;
             state.isAuth = true;

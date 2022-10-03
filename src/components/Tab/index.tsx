@@ -2,6 +2,7 @@ import MuiTab, { TabProps } from '@mui/material/Tab';
 import styled from '@emotion/styled';
 
 import colors from 'static/colors/colors.scss';
+import 'static/fonts/fonts.scss';
 
 const StyledTab = styled(MuiTab)`
     font-family: Roboto;

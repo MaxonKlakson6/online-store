@@ -10,14 +10,14 @@ import {
 
 export interface AuthProps {
     title: string;
-    children?: string;
     buttonText: string;
     routeTo: string;
+    innerText?: string;
 }
 
 const AuthBanner: FC<AuthProps> = ({
     title,
-    children,
+    innerText,
     buttonText,
     routeTo,
 }) => {
@@ -30,14 +30,14 @@ const AuthBanner: FC<AuthProps> = ({
     return (
         <Wrapper>
             <Title variant="h1">{title}</Title>
-            <TextBox>{children}</TextBox>
+            <TextBox>{innerText}</TextBox>
             <GreenButton onClick={onNavigate}>{buttonText}</GreenButton>
         </Wrapper>
     );
 };
 
 AuthBanner.defaultProps = {
-    children: '',
+    innerText: '',
 };
 
 export default AuthBanner;

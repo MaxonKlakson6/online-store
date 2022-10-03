@@ -1,6 +1,6 @@
-export interface ResponseType {
-    firstName: string;
+import { UserTypesToSignUp } from 'pages/SignUp/types/UserTypesToSignUp';
+
+export interface ResponseType extends UserTypesToSignUp {
     _id: string;
-    email: string;
     accessToken: string;
 }
