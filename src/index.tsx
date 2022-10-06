@@ -1,19 +1,22 @@
-import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import SignUpContainer from 'pages/SignUp/containers/SignUpContainer';
+import { store, persistor } from 'store';
+import Router from 'router/Router';
 
-import { store } from 'store';
 import 'index.css';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 root.render(
-    <React.StrictMode>
+    <BrowserRouter>
         <Provider store={store}>
-            <SignUpContainer />
+            <PersistGate loading={null} persistor={persistor}>
+                <Router />
+            </PersistGate>
         </Provider>
-    </React.StrictMode>
+    </BrowserRouter>
 );

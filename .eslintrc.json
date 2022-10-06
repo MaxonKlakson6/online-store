@@ -3,6 +3,9 @@
         "browser": true,
         "es2021": true
     },
+    "globals": {
+        "JSX": "readonly"
+    },
     "extends": [
         "plugin:react/recommended",
         "airbnb"
@@ -34,7 +37,15 @@
         "import/no-unresolved": "off",
         "react/jsx-indent": ["warn", 4],
         "indent": ["warn", 4],
-        "comma-dangle": ["error", {"functions": "ignore", "objects":  "ignore"}],
-        "import/prefer-default-export": "off"
+        "comma-dangle": ["error", {"functions": "ignore", "objects":  "ignore", "imports":  "ignore"}],
+        "import/prefer-default-export": "off",
+        "react/jsx-props-no-spreading": "off",
+        "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+        "react/jsx-indent-props": ["warn", 4],
+        "object-curly-newline": "off",
+        "no-unused-vars": "off",
+        "operator-linebreak": "off",
+        "implicit-arrow-linebreak": "off",
+        "no-param-reassign": "off"
     }
 }
