@@ -8,6 +8,7 @@ import { loadProducts, savePreviousPage } from 'pages/Goods/reducer';
 import { shopSelector } from 'pages/Goods/selectors';
 
 import { ROUTE_NAMES } from 'router/routeNames';
+import BaseLayout from 'components/BaseLayout';
 
 const GoodsContainer = () => {
     const dispatch = useAppDispatch();
@@ -33,12 +34,14 @@ const GoodsContainer = () => {
     }, [page]);
 
     return (
-        <GoodsLayout
-            isLoading={isLoading}
-            handleChangePage={handleChangePage}
-            handleNavigateToProduct={handleNavigateToProduct}
-            page={page}
-        />
+        <BaseLayout location={ROUTE_NAMES.PRODUCTS}>
+            <GoodsLayout
+                isLoading={isLoading}
+                handleChangePage={handleChangePage}
+                handleNavigateToProduct={handleNavigateToProduct}
+                page={page}
+            />
+        </BaseLayout>
     );
 };
 

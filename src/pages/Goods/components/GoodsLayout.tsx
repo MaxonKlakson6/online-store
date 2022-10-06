@@ -1,7 +1,6 @@
 import { ChangeEvent, MouseEvent } from 'react';
 import styled from '@emotion/styled';
 
-import Header from 'components/Header';
 import BlockHeader from 'pages/Goods/components/BlockHeader';
 import ProductsHolder from 'pages/Goods/components/ProductsBlock';
 import Pagination from 'components/Pagination';
@@ -58,7 +57,6 @@ const GoodsLayout = ({
     handleNavigateToProduct,
 }: GoodsLayoutProps) => (
     <div>
-        <Header location={0} />
         <ImageHolder>
             <ImageContentBlock>
                 <BlockHeader

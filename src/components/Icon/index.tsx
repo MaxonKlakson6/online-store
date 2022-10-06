@@ -1,18 +1,18 @@
 import styled from '@emotion/styled';
 
-import icon from 'static/icons/bulbasaur-seeklogo.com.svg';
-
 const AppIcon = styled.img`
     width: 50px;
     height: 50px;
 `;
 
 interface IconProps {
+    src: string;
+    alt: string;
     className?: string;
 }
 
-const Icon = ({ className }: IconProps) => (
-    <AppIcon src={icon} alt="icon" className={className} />
+const Icon = ({ src, alt, className }: IconProps) => (
+    <AppIcon src={src} alt={alt} className={className} />
 );
 
 Icon.defaultProps = {

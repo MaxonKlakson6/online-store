@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { Products } from 'pages/Goods/types/Prducts';
+import { Products } from 'services/ProductsService/types';
 
-import { getProducts } from 'pages/Goods/api/getProducts';
+import ProductsService from 'services/ProductsService';
 
 interface ShopInitialState {
     data: Products | null;
@@ -22,7 +22,7 @@ export const loadProducts = createAsyncThunk(
     'shop/loadProducts',
     async (page: number, { rejectWithValue }): Promise<Products | any> => {
         try {
-            const response = await getProducts(page);
+            const response = await ProductsService.getProducts(page);
 
             return response;
         } catch (error) {

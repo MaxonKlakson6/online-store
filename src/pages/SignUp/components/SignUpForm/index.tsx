@@ -19,7 +19,7 @@ import { useVisibility } from 'hooks';
 import { TEXT } from 'constants/text';
 
 import { AuthFormsProps } from 'types/AuthFormsProps';
-import { UserTypesToSignUp } from 'pages/SignUp/types/UserTypesToSignUp';
+import { UserTypesToSignUp } from 'services/AuthService/types';
 import { ConfirmAndPasswordVisibility } from 'pages/SignUp/types/ConfirmAndPasswordVisibility';
 
 import colors from 'static/colors/colors.scss';

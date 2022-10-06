@@ -5,7 +5,7 @@ import Card from 'components/Card';
 
 import { useAppSelector } from 'hooks';
 
-import { PokemonCard } from 'types/PokemonCard';
+import { PokemonCard } from 'services/ProductsService/types';
 
 const ProductsHolder = styled.div`
     display: grid;

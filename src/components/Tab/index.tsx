@@ -18,6 +18,8 @@ const StyledTab = styled(MuiTab)`
     }
 `;
 
-const Tab = ({ label }: TabProps) => <StyledTab label={label} />;
+const Tab = ({ label, value, onClick }: TabProps) => (
+    <StyledTab label={label} value={value} onClick={onClick} />
+);
 
 export default Tab;

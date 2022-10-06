@@ -4,7 +4,9 @@ import PrivateRoute from 'router/PrivateRoute';
 import SignInContainer from 'pages/SignIn/containers/SignInContainer';
 import SignUpContainer from 'pages/SignUp/containers/SignUpContainer';
 import GoodsContainer from 'pages/Goods/containers/GoodsContainer';
-import ProductDetails from 'pages/ProductDetails/ProductDetails';
+import ProductDetailsContainer from 'pages/ProductDetails/container/ProductDetailsContainer';
+import AboutLayout from 'pages/About/components/AboutLayout';
+import ContactLayout from 'pages/Contact/components/ContactLayout';
 
 import { ROUTE_NAMES } from 'router/routeNames';
 
@@ -16,8 +18,10 @@ const Router = () => (
             <Route path={ROUTE_NAMES.PRODUCTS} element={<GoodsContainer />} />
             <Route
                 path={ROUTE_NAMES.PRODUCTS_DETAILS}
-                element={<ProductDetails />}
+                element={<ProductDetailsContainer />}
             />
+            <Route path={ROUTE_NAMES.ABOUT} element={<AboutLayout />} />
+            <Route path={ROUTE_NAMES.CONTACT} element={<ContactLayout />} />
         </Route>
     </Routes>
 );

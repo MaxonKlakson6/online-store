@@ -4,12 +4,14 @@ import { REHYDRATE, PERSIST } from 'redux-persist/es/constants';
 
 import signInSlice from 'pages/SignIn/reducer';
 import shopSlice from 'pages/Goods/reducer';
+import productDetailsSlice from 'pages/ProductDetails/reducer';
 
 import { persistConfig, signInPersistConfig } from 'store/persistConfig';
 
 const rootReducer = combineReducers({
     signIn: persistReducer(signInPersistConfig, signInSlice),
     shop: shopSlice,
+    productDetails: productDetailsSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

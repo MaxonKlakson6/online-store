@@ -46,6 +46,9 @@
         "no-unused-vars": "off",
         "operator-linebreak": "off",
         "implicit-arrow-linebreak": "off",
-        "no-param-reassign": "off"
+        "no-param-reassign": "off",
+        "linebreak-style": "off",
+        "no-shadow": "off",
+        "class-methods-use-this": "off"
     }
 }

@@ -1,5 +1,6 @@
 import { MouseEvent } from 'react';
 import { CardMedia } from '@mui/material';
+import { capitalize } from 'lodash';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 import Typography from 'components/Typography';
@@ -9,6 +10,7 @@ import {
     CardInfoBlock,
     ButtonAddToCart,
 } from 'components/Card/StyledComponents';
+import { Title } from 'components/styled/Title';
 
 interface CardProps {
     image: string;
@@ -46,7 +48,7 @@ const Card = ({
                 />
                 <CardInfoBlock>
                     <div style={{ flexGrow: 1 }}>
-                        <Typography variant="h5">{title}</Typography>
+                        <Title variant="h5">{capitalize(title)}</Title>
                         <Typography>{`${price}$`}</Typography>
                     </div>
                     <ButtonAddToCart type="button" onClick={handleAddToCart}>

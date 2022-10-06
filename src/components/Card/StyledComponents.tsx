@@ -3,6 +3,7 @@ import MuiCard from '@mui/material/Card';
 import { CardContent } from '@mui/material';
 
 import colors from 'static/colors/colors.scss';
+import Typography from 'components/Typography';
 
 export const CardHolder = styled.div`
     width: fit-content;

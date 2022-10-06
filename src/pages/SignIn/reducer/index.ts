@@ -1,16 +1,15 @@
 import { toast } from 'react-toastify';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { signIn } from 'pages/SignIn/api/signIn';
+import AuthService from 'services/AuthService';
 
-import { SignInTypes } from 'pages/SignIn/types/SignInTypes';
-import { ResponseType } from 'pages/SignIn/types/ResponseType';
+import { SignInTypes, SignInResponseType } from 'services/AuthService/types';
 
 import { CONSTANTS } from 'constants/index';
 
 interface signInState {
     isLoading: boolean;
-    data: ResponseType | null;
+    data: SignInResponseType | null;
     error: null | any;
     isLogin: boolean;
     isAuth: boolean;
@@ -29,9 +28,9 @@ export const login = createAsyncThunk(
     async (
         dataToLogin: SignInTypes,
         { rejectWithValue }
-    ): Promise<ResponseType | any> => {
+    ): Promise<SignInResponseType | any> => {
         try {
-            const response = signIn(dataToLogin);
+            const response = AuthService.signIn(dataToLogin);
 
             toast.promise(response, {
                 pending: 'Waiting...',
@@ -39,7 +38,7 @@ export const login = createAsyncThunk(
 
             await response;
 
-            return response as Promise<ResponseType>;
+            return response as Promise<SignInResponseType>;
         } catch (error) {
             return rejectWithValue(error);
         }

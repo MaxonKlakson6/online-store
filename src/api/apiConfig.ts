@@ -19,7 +19,7 @@ api.interceptors.request.use((request) => {
 api.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error.response.data.message === 'Unauthorized') {
+        if (error.response.data.statusCode === 403) {
             localStorage.clear();
             window.location.reload();
         }
