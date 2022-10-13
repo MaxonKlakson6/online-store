@@ -18,7 +18,7 @@ const StyledTab = styled(MuiTab)`
     }
 `;
 
-const Tab = ({ label, value, onClick }: TabProps) => (
+const Tab = ({ label, value, onClick }: TabProps): JSX.Element => (
     <StyledTab label={label} value={value} onClick={onClick} />
 );
 

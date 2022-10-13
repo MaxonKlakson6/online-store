@@ -24,7 +24,7 @@ interface CardProps {
     title: string;
 }
 
-const Card = ({ image, alt, title }: CardProps) => (
+const Card = ({ image, alt, title }: CardProps): JSX.Element => (
     <Wrapper>
         <CardActionArea>
             <CardMedia component="img" src={image} alt={alt} />

@@ -3,23 +3,54 @@ import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutl
 import styled from '@emotion/styled';
 
 import List from 'pages/ProductDetails/components/List';
-import Counter from 'components/Counter';
 import {
     AddToCartButton,
     DetailsHeader,
     ProductPrice,
     ProductTitle,
 } from 'pages/ProductDetails/components/StyledComponents';
+import Counter from 'components/Counter';
 
 import { useAppSelector } from 'hooks';
+
+import { detailsSelector } from 'pages/ProductDetails/selectors';
+import { potentialCartItemSelector } from 'pages/Cart/selectors';
+
+import { NewCartItem } from 'services/CartService/types';
+import { QuantityFunction } from 'hooks/useCart';
 
 const Wrapper = styled.div`
     width: 50%;
 `;
 
-const InfoBlock = () => {
-    const details = useAppSelector((state) => state.productDetails.data);
-    const isOnCart = false;
+interface InfoBlockProps {
+    handleAddProduct: (itemToAdd: NewCartItem) => void;
+    handleIncrementQuantity: QuantityFunction;
+    handleDecrementQuantity: QuantityFunction;
+}
+
+const InfoBlock = ({
+    handleAddProduct,
+    handleIncrementQuantity,
+    handleDecrementQuantity,
+}: InfoBlockProps): JSX.Element => {
+    const details = useAppSelector(detailsSelector);
+
+    const potentialCartItem = useAppSelector((state) =>
+        potentialCartItemSelector(state, details.id)
+    );
+
+    const handleAddToCart = () => {
+        const { id, name, image, price } = details;
+        handleAddProduct({
+            id,
+            name,
+            image,
+            price,
+            quantity: 1,
+        });
+    };
+
     return (
         <Wrapper>
             <DetailsHeader>
@@ -27,10 +58,16 @@ const InfoBlock = () => {
                     {capitalize(details.name)}
                 </ProductTitle>
                 <ProductPrice>{`$ ${details.price}`}</ProductPrice>
-                {isOnCart ? (
-                    <Counter />
+                {potentialCartItem ? (
+                    <Counter
+                        id={potentialCartItem.id}
+                        count={potentialCartItem.quantity}
+                        isHasTitle
+                        onIncrement={handleIncrementQuantity}
+                        onDecrement={handleDecrementQuantity}
+                    />
                 ) : (
-                    <AddToCartButton>
+                    <AddToCartButton onClick={handleAddToCart}>
                         <AddShoppingCartOutlinedIcon />
                         Add to cart
                     </AddToCartButton>

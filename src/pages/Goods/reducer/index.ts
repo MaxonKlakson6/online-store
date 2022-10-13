@@ -5,7 +5,7 @@ import { Products } from 'services/ProductsService/types';
 import ProductsService from 'services/ProductsService';
 
 interface ShopInitialState {
-    data: Products | null;
+    products: Products | null;
     errors: any;
     isLoading: boolean;
     page: number;
@@ -13,7 +13,7 @@ interface ShopInitialState {
 
 const initialState: ShopInitialState = {
     errors: null,
-    data: null,
+    products: null,
     isLoading: false,
     page: 1,
 };
@@ -47,7 +47,7 @@ const shopSlice = createSlice({
             loadProducts.fulfilled,
             (state, { payload: products }) => {
                 state.isLoading = false;
-                state.data = products;
+                state.products = products;
             }
         );
         builder.addCase(loadProducts.rejected, (state, { payload: error }) => {

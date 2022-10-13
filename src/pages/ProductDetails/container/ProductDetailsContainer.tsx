@@ -7,8 +7,9 @@ import BaseLayout from 'components/BaseLayout';
 import Progress from 'components/Progress';
 
 import { loadProductDetails } from 'pages/ProductDetails/reducer';
-import { useAppDispatch, useAppSelector } from 'hooks';
-import { ROUTE_NAMES } from 'router/routeNames';
+import { useAppDispatch, useAppSelector, useCart } from 'hooks';
+
+import { detailsReducerSelector } from 'pages/ProductDetails/selectors';
 
 const ProductDetailsProgress = styled(Progress)`
     position: absolute;
@@ -16,20 +17,32 @@ const ProductDetailsProgress = styled(Progress)`
     left: 50%;
 `;
 
-const ProductDetailsContainer = () => {
-    const { data, isLoading } = useAppSelector((state) => state.productDetails);
+const ProductDetailsContainer = (): JSX.Element => {
+    const { data, isLoading } = useAppSelector(detailsReducerSelector);
     const dispatch = useAppDispatch();
+
     const { id } = useParams();
+
+    const {
+        handleAddProduct,
+        handleIncrementQuantity,
+        handleDecrementQuantity,
+    } = useCart();
 
     useEffect(() => {
         dispatch(loadProductDetails(Number(id)));
     }, []);
     return (
-        <BaseLayout location={ROUTE_NAMES.PRODUCTS}>
+        <BaseLayout location={false}>
             {isLoading ? (
                 <ProductDetailsProgress />
             ) : (
-                <ProductDetailsLayout details={data} />
+                <ProductDetailsLayout
+                    details={data}
+                    handleAddProduct={handleAddProduct}
+                    handleIncrementQuantity={handleIncrementQuantity}
+                    handleDecrementQuantity={handleDecrementQuantity}
+                />
             )}
         </BaseLayout>
     );

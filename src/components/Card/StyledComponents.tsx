@@ -3,7 +3,6 @@ import MuiCard from '@mui/material/Card';
 import { CardContent } from '@mui/material';
 
 import colors from 'static/colors/colors.scss';
-import Typography from 'components/Typography';
 
 export const CardHolder = styled.div`
     width: fit-content;
@@ -36,5 +35,10 @@ export const ButtonAddToCart = styled.button`
     &:hover {
         background: ${colors.transparentGreen};
         color: ${colors.green};
+    }
+    &:disabled {
+        background: rgba(247, 248, 250, 0.7);
+        color: #000;
+        cursor: auto;
     }
 `;

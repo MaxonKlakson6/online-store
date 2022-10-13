@@ -52,7 +52,7 @@ const SignUpForm = ({
     errors,
     dirty,
     isValid,
-}: SignUpFormProps) => {
+}: SignUpFormProps): JSX.Element => {
     const { visibility, handleChangeVisibility } =
         useVisibility<ConfirmAndPasswordVisibility>({
             password: false,

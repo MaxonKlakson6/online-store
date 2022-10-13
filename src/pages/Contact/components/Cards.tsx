@@ -11,7 +11,7 @@ const CardsHolder = styled.div`
     justify-content: space-between;
 `;
 
-const Cards = () => (
+const Cards = (): JSX.Element => (
     <CardsHolder>
         <Card
             image={deliveryImage}

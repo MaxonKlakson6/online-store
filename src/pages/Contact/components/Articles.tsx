@@ -16,7 +16,7 @@ const ArticleItem = styled.li`
     color: black;
 `;
 
-const Articles = () => (
+const Articles = (): JSX.Element => (
     <ArticlesList>
         <ArticleItem>
             <Typography>Estimated Preorder Release Dates</Typography>

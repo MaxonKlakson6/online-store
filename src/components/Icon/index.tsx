@@ -11,7 +11,7 @@ interface IconProps {
     className?: string;
 }
 
-const Icon = ({ src, alt, className }: IconProps) => (
+const Icon = ({ src, alt, className }: IconProps): JSX.Element => (
     <AppIcon src={src} alt={alt} className={className} />
 );
 

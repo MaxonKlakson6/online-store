@@ -2,10 +2,12 @@ $green: #56B280;
 $grey: rgb(204, 204, 204);
 $transparent-green: rgba(86, 178, 128, 0.2);
 $black: rgba(39, 39, 39, 1);
+$image-background-grey: #f7f8fa;
 
 :export {
   green: $green;
   grey: $grey;
   transparentGreen: $transparent-green;
   black: $black;
+  imageBackgroundGrey: $image-background-grey;
 }

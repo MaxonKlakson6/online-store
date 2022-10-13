@@ -18,13 +18,12 @@ const DetailsBlock = styled(MuiList)`
     grid-template-columns: auto auto;
 `;
 
-const List = ({
-    stats,
-    abilities,
-}: {
+interface ListProps {
     stats?: Stat[];
     abilities?: Ability[];
-}) => (
+}
+
+const List = ({ stats, abilities }: ListProps): JSX.Element => (
     <DetailsBlock>
         {stats &&
             stats.map(({ title, value }) => (

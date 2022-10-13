@@ -10,7 +10,7 @@ const StyledProgress = styled(MuiProgress)`
     display: block;
 `;
 
-const Progress = ({ className }: CircularProgressProps) => (
+const Progress = ({ className }: CircularProgressProps): JSX.Element => (
     <StyledProgress className={className} />
 );
 

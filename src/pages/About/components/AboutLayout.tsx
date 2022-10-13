@@ -41,7 +41,7 @@ const ImageHolder = styled.div`
     flex-grow: 2;
 `;
 
-const AboutLayout = () => (
+const AboutLayout = (): JSX.Element => (
     <BaseLayout location={ROUTE_NAMES.ABOUT}>
         <Wrapper>
             <Post>

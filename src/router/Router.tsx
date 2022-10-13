@@ -7,8 +7,10 @@ import GoodsContainer from 'pages/Goods/containers/GoodsContainer';
 import ProductDetailsContainer from 'pages/ProductDetails/container/ProductDetailsContainer';
 import AboutLayout from 'pages/About/components/AboutLayout';
 import ContactLayout from 'pages/Contact/components/ContactLayout';
+import CartContainer from 'pages/Cart/container/CartContainer';
 
 import { ROUTE_NAMES } from 'router/routeNames';
+import ProfileContainer from 'pages/Profile/container/ProfileContainer';
 
 const Router = () => (
     <Routes>
@@ -22,6 +24,8 @@ const Router = () => (
             />
             <Route path={ROUTE_NAMES.ABOUT} element={<AboutLayout />} />
             <Route path={ROUTE_NAMES.CONTACT} element={<ContactLayout />} />
+            <Route path={ROUTE_NAMES.CART} element={<CartContainer />} />
+            <Route path={ROUTE_NAMES.PROFILE} element={<ProfileContainer />} />
         </Route>
     </Routes>
 );

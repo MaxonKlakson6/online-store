@@ -13,7 +13,7 @@ const StatItemIcon = styled(Icon)`
     height: 30px;
 `;
 
-const StatItem = ({ title, value }: Stat) => (
+const StatItem = ({ title, value }: Stat): JSX.Element => (
     <ListItem>
         <ListItemAvatar>
             <StatItemIcon src={statsIcons[camelCase(title)]} alt={title} />

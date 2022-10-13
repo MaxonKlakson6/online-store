@@ -19,12 +19,12 @@ export const ContentHolder = styled.div`
 export const ImageHolder = styled.div`
     width: fit-content;
     margin-right: 31px;
-    background: #f7f8fa;
 `;
 
 export const Image = styled.img`
     width: 540px;
     height: 433px;
+    background: ${colors.imageBackgroundGrey};
 `;
 
 export const ProductTitle = styled(Title)`

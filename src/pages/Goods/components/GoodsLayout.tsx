@@ -7,6 +7,9 @@ import Pagination from 'components/Pagination';
 
 import Progress from 'components/Progress';
 
+import { NewCartItem } from 'services/CartService/types';
+import { QuantityFunction } from 'hooks/useCart';
+
 import { TEXT } from 'constants/text';
 import banner from 'static/images/banner.jpg';
 import icon from 'static/icons/bulbasaur_icon-icons.com_67580.png';
@@ -48,6 +51,9 @@ interface GoodsLayoutProps {
         event: MouseEvent<HTMLDivElement>,
         id: number
     ) => void;
+    handleAddProduct: (itemToAdd: NewCartItem) => void;
+    handleIncrementQuantity: QuantityFunction;
+    handleDecrementQuantity: QuantityFunction;
 }
 
 const GoodsLayout = ({
@@ -55,7 +61,10 @@ const GoodsLayout = ({
     page,
     handleChangePage,
     handleNavigateToProduct,
-}: GoodsLayoutProps) => (
+    handleAddProduct,
+    handleIncrementQuantity,
+    handleDecrementQuantity,
+}: GoodsLayoutProps): JSX.Element => (
     <div>
         <ImageHolder>
             <ImageContentBlock>
@@ -73,6 +82,9 @@ const GoodsLayout = ({
             ) : (
                 <ProductsHolder
                     handleNavigateToProduct={handleNavigateToProduct}
+                    handleAddProduct={handleAddProduct}
+                    handleIncrementQuantity={handleIncrementQuantity}
+                    handleDecrementQuantity={handleDecrementQuantity}
                 />
             )}
         </ProductsBlock>

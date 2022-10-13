@@ -1,4 +1,8 @@
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Badge } from '@mui/material';
+import styled from '@emotion/styled';
 
 import Logo from 'components/Icon';
 import Tab from 'components/Tab';
@@ -11,20 +15,44 @@ import {
     CartIcon,
 } from 'components/Header/StyledComponents';
 
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { getCartItems } from 'pages/Cart/thunks';
+import { savePreviousPage } from 'pages/Goods/reducer';
+
+import { itemsQuantitySelector } from 'pages/Cart/selectors';
 import { ROUTE_NAMES } from 'router/routeNames';
 
 import logo from 'static/icons/bulbasaur-seeklogo.com.svg';
+import colors from 'static/colors/colors.scss';
 import 'static/fonts/fonts.scss';
-import { useDispatch } from 'react-redux';
-import { savePreviousPage } from 'pages/Goods/reducer';
+
+const StyledBadge = styled(Badge)`
+    color: #fff;
+    span {
+        background: ${colors.green};
+    }
+`;
 
 interface HeaderProps {
-    location: string;
+    location: string | boolean;
 }
 
-const Header = ({ location }: HeaderProps) => {
+const Header = ({ location }: HeaderProps): JSX.Element => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+
+    const dispatch = useAppDispatch();
+
+    const customerId = useAppSelector(
+        (state) => state.cart.cartData.customerId
+    );
+    const itemsQuantity = useSelector(itemsQuantitySelector);
+
+    useEffect(() => {
+        if (!customerId) {
+            dispatch(getCartItems());
+        }
+    }, []);
+
     return (
         <Wrapper>
             <Navbar>
@@ -64,7 +92,9 @@ const Header = ({ location }: HeaderProps) => {
                         <ProfileIcon />
                     </Link>
                     <Link to={ROUTE_NAMES.CART}>
-                        <CartIcon />
+                        <StyledBadge badgeContent={itemsQuantity}>
+                            <CartIcon />
+                        </StyledBadge>
                     </Link>
                 </IconHolder>
             </Navbar>

@@ -19,7 +19,7 @@ api.interceptors.request.use((request) => {
 api.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error.response.data.statusCode === 403) {
+        if (error.response.data.statusCode === 401) {
             localStorage.clear();
             window.location.reload();
         }

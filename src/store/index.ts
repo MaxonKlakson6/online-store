@@ -5,19 +5,21 @@ import { REHYDRATE, PERSIST } from 'redux-persist/es/constants';
 import signInSlice from 'pages/SignIn/reducer';
 import shopSlice from 'pages/Goods/reducer';
 import productDetailsSlice from 'pages/ProductDetails/reducer';
+import cartSlice from 'pages/Cart/reducers/cartReducer';
+import orderSlice from 'pages/Cart/reducers/orderReducer';
 
-import { persistConfig, signInPersistConfig } from 'store/persistConfig';
+import { signInPersistConfig } from 'store/persistConfig';
 
 const rootReducer = combineReducers({
     signIn: persistReducer(signInPersistConfig, signInSlice),
     shop: shopSlice,
     productDetails: productDetailsSlice,
+    cart: cartSlice,
+    order: orderSlice,
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 const store = configureStore({
-    reducer: persistedReducer,
+    reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {

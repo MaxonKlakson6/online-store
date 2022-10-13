@@ -10,8 +10,6 @@ import Articles from 'pages/Contact/components/Articles';
 
 const Wrapper = styled.div`
     padding: 100px 0;
-    height: 71.5vh;
-    background-color: ${colors.transparentGreen};
 `;
 
 const Title = styled(Typography)`
@@ -30,8 +28,11 @@ const SectionTitle = styled(Typography)`
     font-weight: 500;
 `;
 
-const ContactLayout = () => (
-    <BaseLayout location={ROUTE_NAMES.CONTACT}>
+const ContactLayout = (): JSX.Element => (
+    <BaseLayout
+        location={ROUTE_NAMES.CONTACT}
+        contentBackground={colors.transparentGreen}
+    >
         <Wrapper>
             <ContentHolder>
                 <Title variant="h5">Welcome to Pokémon Center Support</Title>
