@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/online-store/static/css/main.74ec7ff7.css",
+    "main.js": "/online-store/static/js/main.50afd7fc.js",
+    "static/media/What-is-pokeshop.jpg": "/online-store/static/media/What-is-pokeshop.45ba661d76b403f1f913.jpg",
+    "static/media/Pokeshop-products.png": "/online-store/static/media/Pokeshop-products.0ce3327d92d8763400d2.png",
+    "static/media/helvetica_regular.otf": "/online-store/static/media/helvetica_regular.da7db66db5a8e54a8308.otf",
+    "static/media/Roboto-Medium.ttf": "/online-store/static/media/Roboto-Medium.7c8d04cd831df3033c8a.ttf",
+    "static/media/Roboto-Regular.ttf": "/online-store/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
+    "static/media/Poppins-Regular.ttf": "/online-store/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
+    "static/media/Poppins-Medium.ttf": "/online-store/static/media/Poppins-Medium.673ed42382ab264e0bf5.ttf",
+    "static/media/Poppins-SemiBold.ttf": "/online-store/static/media/Poppins-SemiBold.ac8d04b620e54be9b0f0.ttf",
+    "static/media/Oswald-VariableFont_wght.ttf": "/online-store/static/media/Oswald-VariableFont_wght.46d7853f0185f6bf0c93.ttf",
+    "static/media/banner.jpg": "/online-store/static/media/banner.1e7128ad1759d1781e7c.jpg",
+    "static/media/arrow.png": "/online-store/static/media/arrow.08bc24dcd4c9a94ed4d4.png",
+    "static/media/running.png": "/online-store/static/media/running.4f4b12091ae88635af0d.png",
+    "static/media/award.png": "/online-store/static/media/award.fad062908293e112ce2f.png",
+    "static/media/bulbasaur-seeklogo.com.svg": "/online-store/static/media/bulbasaur-seeklogo.com.34732d46f2bd3ecf15cdb893f247ce3c.svg",
+    "static/media/shield.png": "/online-store/static/media/shield.9bcdae622c1f616080ac.png",
+    "static/media/swords.png": "/online-store/static/media/swords.abacaa181fc422a4f672.png",
+    "static/media/staff.png": "/online-store/static/media/staff.341ae0af12337ea72974.png",
+    "static/media/heart.png": "/online-store/static/media/heart.a13e3857c7c7f11756ac.png",
+    "index.html": "/online-store/index.html",
+    "main.74ec7ff7.css.map": "/online-store/static/css/main.74ec7ff7.css.map",
+    "main.50afd7fc.js.map": "/online-store/static/js/main.50afd7fc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.74ec7ff7.css",
+    "static/js/main.50afd7fc.js"
+  ]
+}
