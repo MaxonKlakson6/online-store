@@ -35,8 +35,8 @@
         ],
         "semi": [2, "always"],
         "import/no-unresolved": "off",
-        "react/jsx-indent": ["warn", 4],
-        "indent": ["warn", 4],
+        "react/jsx-indent": "off",
+        "indent": "off",
         "comma-dangle": ["error", {"functions": "ignore", "objects":  "ignore", "imports":  "ignore"}],
         "import/prefer-default-export": "off",
         "react/jsx-props-no-spreading": "off",
@@ -50,6 +50,8 @@
         "linebreak-style": "off",
         "no-shadow": "off",
         "class-methods-use-this": "off",
-        "function-paren-newline": "off"
+        "function-paren-newline": "off",
+        "no-underscore-dangle": "off",
+        "react/jsx-curly-newline": "off"
     }
 }

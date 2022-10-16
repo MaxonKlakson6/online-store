@@ -22,6 +22,12 @@ const ButtonDelete = styled(Button)`
     position: absolute;
     right: 0;
     top: calc(50% - 12px);
+    border: 1px solid ${colors.green};
+
+    &:hover {
+        background-color: #fff;
+        color: ${colors.green};
+    }
 `;
 
 const TableRow = styled(MuiTableRow)`
@@ -31,7 +37,6 @@ const TableRow = styled(MuiTableRow)`
 interface TableItemProps {
     image: string;
     price: number;
-    total: number;
     quantity: number;
     id: number;
     onIncrementQuantity: QuantityFunction;
@@ -42,34 +47,37 @@ interface TableItemProps {
 const TableItem = ({
     image,
     price,
-    total,
     quantity,
     id,
     onIncrementQuantity,
     onDecrementQuantity,
     onRemoveCartItem,
-}: TableItemProps): JSX.Element => (
-    <TableRow>
-        <TableCell>
-            <Image src={image} alt="product" />
-        </TableCell>
-        <TableCell>{`${price}$`}</TableCell>
-        <TableCell>
-            <Counter
-                id={id}
-                count={quantity}
-                isHasTitle={false}
-                onIncrement={onIncrementQuantity}
-                onDecrement={onDecrementQuantity}
-            />
-        </TableCell>
-        <TableCell>{`${total}$`}</TableCell>
-        <ButtonDeleteHolder>
-            <ButtonDelete onClick={() => onRemoveCartItem(id)}>
-                <CloseIcon />
-            </ButtonDelete>
-        </ButtonDeleteHolder>
-    </TableRow>
-);
+}: TableItemProps): JSX.Element => {
+    const totalPrice = price * quantity;
+
+    return (
+        <TableRow>
+            <TableCell>
+                <Image src={image} alt="product" />
+            </TableCell>
+            <TableCell>{`${price}$`}</TableCell>
+            <TableCell>
+                <Counter
+                    id={id}
+                    count={quantity}
+                    isHasTitle={false}
+                    onIncrement={onIncrementQuantity}
+                    onDecrement={onDecrementQuantity}
+                />
+            </TableCell>
+            <TableCell>{`${totalPrice}$`}</TableCell>
+            <ButtonDeleteHolder>
+                <ButtonDelete onClick={() => onRemoveCartItem(id)}>
+                    <CloseIcon />
+                </ButtonDelete>
+            </ButtonDeleteHolder>
+        </TableRow>
+    );
+};
 
 export default TableItem;

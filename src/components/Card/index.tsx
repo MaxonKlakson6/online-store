@@ -2,15 +2,17 @@ import { MouseEvent } from 'react';
 import { CardMedia } from '@mui/material';
 import { capitalize } from 'lodash';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import RemoveShoppingCartOutlinedIcon from '@mui/icons-material/RemoveShoppingCartOutlined';
 
 import Typography from 'components/Typography';
-import Counter from 'components/Counter';
 import {
     CardHolder,
     StyledCard,
     CardInfoBlock,
-    ButtonAddToCart,
+    ButtonWithIcon,
+    ButtonDeleteFromCart,
 } from 'components/Card/StyledComponents';
+import Counter from 'components/Counter';
 import { Title } from 'components/styled/Title';
 
 import { useAppSelector } from 'hooks';
@@ -30,6 +32,7 @@ interface CardProps {
         id: number
     ) => void;
     handleAddProduct: (itemToAdd: NewCartItem) => void;
+    handleRemoveCartItem: (id: number) => void;
     handleIncrementQuantity: QuantityFunction;
     handleDecrementQuantity: QuantityFunction;
 }
@@ -43,6 +46,7 @@ const Card = ({
     id,
     handleNavigateToProduct,
     handleAddProduct,
+    handleRemoveCartItem,
     handleIncrementQuantity,
     handleDecrementQuantity,
 }: CardProps): JSX.Element => {
@@ -73,21 +77,32 @@ const Card = ({
                         <Typography>{`${price}$`}</Typography>
                     </div>
                     {quantity ? (
-                        <Counter
-                            id={id}
-                            count={quantity}
-                            isHasTitle={false}
-                            onIncrement={handleIncrementQuantity}
-                            onDecrement={handleDecrementQuantity}
-                        />
+                        <div>
+                            <Counter
+                                id={id}
+                                count={quantity}
+                                isHasTitle={false}
+                                onIncrement={handleIncrementQuantity}
+                                onDecrement={handleDecrementQuantity}
+                            />
+                            <ButtonDeleteFromCart
+                                type="button"
+                                onClick={(event) => {
+                                    event.stopPropagation();
+                                    handleRemoveCartItem(id);
+                                }}
+                            >
+                                <RemoveShoppingCartOutlinedIcon />
+                            </ButtonDeleteFromCart>
+                        </div>
                     ) : (
-                        <ButtonAddToCart
+                        <ButtonWithIcon
                             type="button"
                             disabled={isLoading}
                             onClick={handleAddToCart}
                         >
                             <AddShoppingCartIcon />
-                        </ButtonAddToCart>
+                        </ButtonWithIcon>
                     )}
                 </CardInfoBlock>
             </StyledCard>

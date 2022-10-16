@@ -11,6 +11,7 @@ import CartContainer from 'pages/Cart/container/CartContainer';
 
 import { ROUTE_NAMES } from 'router/routeNames';
 import ProfileContainer from 'pages/Profile/container/ProfileContainer';
+import OrderDetailsContainer from 'pages/OrderDetails/container/OrderDetailsContainer';
 
 const Router = () => (
     <Routes>
@@ -26,6 +27,10 @@ const Router = () => (
             <Route path={ROUTE_NAMES.CONTACT} element={<ContactLayout />} />
             <Route path={ROUTE_NAMES.CART} element={<CartContainer />} />
             <Route path={ROUTE_NAMES.PROFILE} element={<ProfileContainer />} />
+            <Route
+                path={ROUTE_NAMES.ORDER_INFO}
+                element={<OrderDetailsContainer />}
+            />
         </Route>
     </Routes>
 );

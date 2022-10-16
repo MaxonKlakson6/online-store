@@ -15,22 +15,22 @@ const initialState: ProductsDetailsInitState = {
         id: 0,
         name: '',
         image: '',
-        abilities: [{ title: '', description: '' }],
-        stats: [{ title: '', value: 0 }],
+        abilities: [],
+        stats: [],
         price: 0,
     },
     isLoading: false,
     error: null,
 };
 
-export const loadProductDetails = createAsyncThunk(
-    'productDetails/loadProductDetails',
-    async (id: number): Promise<ProductDetailsResponse> => {
-        const response = await ProductsService.getProductDetails(id);
+export const loadProductDetails = createAsyncThunk<
+    ProductDetailsResponse,
+    number
+>('productDetails/loadProductDetails', async (id: number) => {
+    const response = await ProductsService.getProductDetails(id);
 
-        return response.data;
-    }
-);
+    return response.data;
+});
 
 const productDetailsSlice = createSlice({
     name: 'productDetails',

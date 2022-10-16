@@ -18,9 +18,9 @@ const initialState: ShopInitialState = {
     page: 1,
 };
 
-export const loadProducts = createAsyncThunk(
+export const loadProducts = createAsyncThunk<Products, number>(
     'shop/loadProducts',
-    async (page: number, { rejectWithValue }): Promise<Products | any> => {
+    async (page: number, { rejectWithValue }) => {
         try {
             const response = await ProductsService.getProducts(page);
 
@@ -35,7 +35,10 @@ const shopSlice = createSlice({
     name: 'shop',
     initialState,
     reducers: {
-        savePreviousPage: (state, { payload: page }) => {
+        savePreviousPage: (
+            state,
+            { payload: page }: { type: string; payload: number }
+        ) => {
             state.page = page;
         },
     },

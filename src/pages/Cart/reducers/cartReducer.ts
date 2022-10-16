@@ -21,7 +21,7 @@ const initialState: InitialState = {
         totalPrice: 0,
         quantity: 0,
         customerId: '',
-        itemsList: [{ id: 0, name: '', image: '', price: 0, quantity: 0 }],
+        itemsList: [],
     },
     error: null,
 };
@@ -37,14 +37,17 @@ const CartSlice = createSlice({
         builder.addCase(
             addProduct.fulfilled,
             (state, { payload: updatedCart }) => {
+                const { __v, _id, ...neededCartFields } = updatedCart;
+
                 state.isLoading = false;
-                state.cartData = updatedCart;
+                state.cartData = neededCartFields;
             }
         );
 
         builder.addCase(getCartItems.pending, (state) => {
             state.isLoading = true;
         });
+
         builder.addCase(getCartItems.fulfilled, (state, { payload: cart }) => {
             const { __v, _id, ...neededCartFields } = cart;
 

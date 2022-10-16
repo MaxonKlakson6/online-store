@@ -29,11 +29,11 @@ export const Image = styled.img`
 
 export const ProductTitle = styled(Title)`
     font-size: 26px;
-    margin-bottom: 15px;
+    margin-bottom: 9px;
 `;
 
 export const ProductPrice = styled(Title)`
-    margin-bottom: 35px;
+    margin-bottom: 12px;
     font-weight: 600;
     font-size: 26px;
     color: ${colors.green};
@@ -53,7 +53,7 @@ export const AbilitiesHolder = styled.div`
 `;
 
 export const AddToCartButton = styled(AuthGreenButton)`
-    margin: 0;
+    margin: 0 0 12px 0;
     border-radius: 7px;
     font-weight: 400;
 `;

@@ -52,6 +52,7 @@ interface GoodsLayoutProps {
         id: number
     ) => void;
     handleAddProduct: (itemToAdd: NewCartItem) => void;
+    handleRemoveCartItem: (id: number) => void;
     handleIncrementQuantity: QuantityFunction;
     handleDecrementQuantity: QuantityFunction;
 }
@@ -62,6 +63,7 @@ const GoodsLayout = ({
     handleChangePage,
     handleNavigateToProduct,
     handleAddProduct,
+    handleRemoveCartItem,
     handleIncrementQuantity,
     handleDecrementQuantity,
 }: GoodsLayoutProps): JSX.Element => (
@@ -83,6 +85,7 @@ const GoodsLayout = ({
                 <ProductsHolder
                     handleNavigateToProduct={handleNavigateToProduct}
                     handleAddProduct={handleAddProduct}
+                    handleRemoveCartItem={handleRemoveCartItem}
                     handleIncrementQuantity={handleIncrementQuantity}
                     handleDecrementQuantity={handleDecrementQuantity}
                 />

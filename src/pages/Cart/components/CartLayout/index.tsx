@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import CartTable from 'pages/Cart/components/CartTable';
 import {
     Wrapper,
@@ -18,6 +19,7 @@ interface CartLayoutProps {
     handleRemoveCartItem: (id: number) => void;
     handleIncrementQuantity: QuantityFunction;
     handleDecrementQuantity: QuantityFunction;
+    handleCreateOrder: () => void;
 }
 
 const CartLayout = ({
@@ -25,6 +27,7 @@ const CartLayout = ({
     handleRemoveCartItem,
     handleIncrementQuantity,
     handleDecrementQuantity,
+    handleCreateOrder,
 }: CartLayoutProps): JSX.Element => (
     <Wrapper>
         <PageTitle>Your cart items</PageTitle>
@@ -42,7 +45,7 @@ const CartLayout = ({
                         Tax and shipping cost will be calculated later
                     </OrderInfo>
                 </div>
-                <GreenButton>Order</GreenButton>
+                <GreenButton onClick={handleCreateOrder}>Order</GreenButton>
             </DoOrderHolder>
         </CartHolder>
     </Wrapper>

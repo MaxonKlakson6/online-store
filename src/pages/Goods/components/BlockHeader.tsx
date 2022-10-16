@@ -31,7 +31,7 @@ const BlockHeader = ({ image, title, text }: BlockHeaderProps): JSX.Element => (
     <div>
         {image && (
             <div style={{ width: 'fit-content', margin: '0 auto' }}>
-                <img src={image} alt="Aboba" />
+                <img src={image} alt="Bulbasaur" />
             </div>
         )}
         <Title variant="h3">{title}</Title>

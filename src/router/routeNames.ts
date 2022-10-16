@@ -6,5 +6,6 @@ export const ROUTE_NAMES = {
     ABOUT: '/about',
     CONTACT: '/contact',
     PROFILE: '/profile',
+    ORDER_INFO: '/profile/:id',
     CART: '/cart',
 };

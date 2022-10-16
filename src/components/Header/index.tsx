@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, MouseEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Badge } from '@mui/material';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import styled from '@emotion/styled';
 
 import Logo from 'components/Icon';
@@ -33,6 +34,13 @@ const StyledBadge = styled(Badge)`
     }
 `;
 
+const ButtonLogout = styled.button`
+    padding: 0;
+    background: 0;
+    border: 0;
+    cursor: pointer;
+`;
+
 interface HeaderProps {
     location: string | boolean;
 }
@@ -46,6 +54,11 @@ const Header = ({ location }: HeaderProps): JSX.Element => {
         (state) => state.cart.cartData.customerId
     );
     const itemsQuantity = useSelector(itemsQuantitySelector);
+
+    const handleLogout = (event: MouseEvent) => {
+        localStorage.clear();
+        window.location.reload();
+    };
 
     useEffect(() => {
         if (!customerId) {
@@ -96,6 +109,9 @@ const Header = ({ location }: HeaderProps): JSX.Element => {
                             <CartIcon />
                         </StyledBadge>
                     </Link>
+                    <ButtonLogout type="button" onClick={handleLogout}>
+                        <LogoutOutlinedIcon />
+                    </ButtonLogout>
                 </IconHolder>
             </Navbar>
         </Wrapper>

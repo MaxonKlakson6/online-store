@@ -13,7 +13,28 @@ export interface Cart {
     itemsList: NewCartItem[];
 }
 
+export interface CartResponse extends Cart {
+    __v: number;
+    _id: string;
+}
+
 export interface ChangeQuantityDTO {
     id: number;
     quantity: number;
+}
+
+export interface ChangeQuantityResponse {
+    cartState: {
+        quantity: number;
+        totalPrice: number;
+    };
+    updatedItem: NewCartItem;
+}
+
+export interface DeleteCartItemResponse {
+    cartState: {
+        quantity: number;
+        totalPrice: number;
+    };
+    removedItemId: number;
 }

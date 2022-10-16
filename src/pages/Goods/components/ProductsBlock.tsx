@@ -22,6 +22,7 @@ interface ProductsBlockProps {
         id: number
     ) => void;
     handleAddProduct: (itemToAdd: NewCartItem) => void;
+    handleRemoveCartItem: (id: number) => void;
     handleIncrementQuantity: QuantityFunction;
     handleDecrementQuantity: QuantityFunction;
 }
@@ -33,6 +34,7 @@ interface MergedPokemonCard extends PokemonCard {
 const ProductsBlock = ({
     handleNavigateToProduct,
     handleAddProduct,
+    handleRemoveCartItem,
     handleIncrementQuantity,
     handleDecrementQuantity,
 }: ProductsBlockProps): JSX.Element => {
@@ -52,6 +54,7 @@ const ProductsBlock = ({
                         price={product.price}
                         handleNavigateToProduct={handleNavigateToProduct}
                         handleAddProduct={handleAddProduct}
+                        handleRemoveCartItem={handleRemoveCartItem}
                         handleIncrementQuantity={handleIncrementQuantity}
                         handleDecrementQuantity={handleDecrementQuantity}
                     />

@@ -18,6 +18,7 @@ const GoodsContainer = (): JSX.Element => {
         handleAddProduct,
         handleIncrementQuantity,
         handleDecrementQuantity,
+        handleRemoveCartItem,
     } = useCart();
 
     const navigate = useNavigate();
@@ -50,6 +51,7 @@ const GoodsContainer = (): JSX.Element => {
                 handleNavigateToProduct={handleNavigateToProduct}
                 page={page}
                 handleAddProduct={handleAddProduct}
+                handleRemoveCartItem={handleRemoveCartItem}
                 handleIncrementQuantity={handleIncrementQuantity}
                 handleDecrementQuantity={handleDecrementQuantity}
             />

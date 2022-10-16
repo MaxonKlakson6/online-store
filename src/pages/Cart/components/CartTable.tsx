@@ -43,7 +43,6 @@ const CartTable = ({
                             id={cartItem.id}
                             image={cartItem.image}
                             price={cartItem.price}
-                            total={cartItem.price}
                             quantity={cartItem.quantity}
                             onIncrementQuantity={handleIncrementQuantity}
                             onDecrementQuantity={handleDecrementQuantity}

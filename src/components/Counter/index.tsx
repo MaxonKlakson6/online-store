@@ -19,6 +19,7 @@ const CounterPanel = styled.div`
 
 const CounterText = styled(Typography)`
     font-size: 18px;
+    text-align: center;
 `;
 
 const Minus = styled(RemoveIcon)`
