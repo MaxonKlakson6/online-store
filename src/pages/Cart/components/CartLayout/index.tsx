@@ -1,4 +1,3 @@
-import { MouseEvent } from 'react';
 import CartTable from 'pages/Cart/components/CartTable';
 import {
     Wrapper,
@@ -10,9 +9,11 @@ import {
     GreenButton,
 } from 'pages/Cart/components/CartLayout/Styled';
 
-import { useAppSelector } from 'hooks';
 import { Cart } from 'services/CartService/types';
 import { QuantityFunction } from 'hooks/useCart';
+
+import gif from 'static/gifs/cart-empty.gif';
+import EmptyCart from 'pages/Cart/components/EmptyCart';
 
 interface CartLayoutProps {
     cart: Cart;
@@ -32,21 +33,29 @@ const CartLayout = ({
     <Wrapper>
         <PageTitle>Your cart items</PageTitle>
         <CartHolder>
-            <CartTable
-                cartList={cart.itemsList}
-                handleRemoveCartItem={handleRemoveCartItem}
-                handleIncrementQuantity={handleIncrementQuantity}
-                handleDecrementQuantity={handleDecrementQuantity}
-            />
-            <DoOrderHolder>
-                <div>
-                    <OrderInfoTitle>{`Sub-total: ${cart.totalPrice}$`}</OrderInfoTitle>
-                    <OrderInfo>
-                        Tax and shipping cost will be calculated later
-                    </OrderInfo>
-                </div>
-                <GreenButton onClick={handleCreateOrder}>Order</GreenButton>
-            </DoOrderHolder>
+            {cart.itemsList.length > 0 ? (
+                <>
+                    <CartTable
+                        cartList={cart.itemsList}
+                        handleRemoveCartItem={handleRemoveCartItem}
+                        handleIncrementQuantity={handleIncrementQuantity}
+                        handleDecrementQuantity={handleDecrementQuantity}
+                    />
+                    <DoOrderHolder>
+                        <div>
+                            <OrderInfoTitle>{`Sub-total: ${cart.totalPrice}$`}</OrderInfoTitle>
+                            <OrderInfo>
+                                Tax and shipping cost will be calculated later
+                            </OrderInfo>
+                        </div>
+                        <GreenButton onClick={handleCreateOrder}>
+                            Order
+                        </GreenButton>
+                    </DoOrderHolder>
+                </>
+            ) : (
+                <EmptyCart />
+            )}
         </CartHolder>
     </Wrapper>
 );

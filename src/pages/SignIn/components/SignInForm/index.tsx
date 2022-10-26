@@ -66,9 +66,6 @@ const SignInForm = ({
                     )}
                 </FormControl>
                 <FormControl>
-                    <Tooltip title="Password have to include 1 uppercase latter 1 lowercase letter 1 digit. Minimum 8 symbols">
-                        <QuestionMarkIcon />
-                    </Tooltip>
                     <FormInput
                         variant="standard"
                         placeholder="Password"

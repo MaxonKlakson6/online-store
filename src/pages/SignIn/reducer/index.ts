@@ -68,7 +68,7 @@ const signInSlice = createSlice({
             localStorage.setItem(CONSTANTS.ACCESS_TOKEN, accessToken);
         });
         builder.addCase(login.rejected, (state, { payload: error }) => {
-            state.error = error;
+            toast(`Error! ${error?.message}`, { type: 'error' });
             state.isLoading = false;
         });
     },

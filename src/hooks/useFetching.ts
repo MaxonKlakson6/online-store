@@ -12,17 +12,13 @@ export const useFetching = <RequestBody, Response>(
     const makeRequest = async (requestBody?: RequestBody): Promise<void> => {
         setLoading(true);
         try {
-            await new Promise((resolve) => {
-                setTimeout(resolve, 3000);
-            });
             const response = await callback(requestBody);
             setRequestError(null);
+
             setData(response.data);
         } catch (error) {
             setData(null);
-            if (axios.isAxiosError(error)) {
-                setRequestError(error.response?.data);
-            }
+            setRequestError(error);
         } finally {
             setLoading(false);
         }

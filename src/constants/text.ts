@@ -1,7 +1,7 @@
 export const TEXT = {
     AUTH_BANNER: 'There are many pokemons to buy, for do purchase',
     PASSWORD_PROMPT:
-        'Password have to include 1 uppercase latter 1 lowercase letter 1 digit. Minimum 8 symbols. No one white space and special symbols.',
+        'Password have to include 1 uppercase latter 1 lowercase letter 1 digit. No one white spaces.',
     PRODUCTS_HEADER_TEXT: 'Order it for you or for your beloved ones',
     WELCOME: 'Welcome to our pokeshop!',
     WHAT_IS_POKESHOP:

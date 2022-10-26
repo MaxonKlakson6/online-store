@@ -1,4 +1,5 @@
 import { MouseEvent } from 'react';
+import moment from 'moment';
 import {
     Table,
     TableBody,
@@ -56,7 +57,9 @@ const OrderList = ({
             </TableHead>
             <TableBody>
                 {orders?.map((order) => {
-                    const createdAt = order.createdAt.slice(0, 10);
+                    const createdAt = moment(order.createdAt).format(
+                        'MM-D-YYYY [at] HH:MM:SS'
+                    );
 
                     return (
                         <OrderItem

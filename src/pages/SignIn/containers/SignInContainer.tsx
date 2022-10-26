@@ -20,7 +20,7 @@ const SignInContainer = (): JSX.Element => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const { userData, isLoading, error, isAuth } = useAppSelector(
+    const { userData, isLoading, isAuth } = useAppSelector(
         (state) => state.signIn
     );
 
@@ -62,12 +62,6 @@ const SignInContainer = (): JSX.Element => {
             clearTimeout(timeout);
         };
     }, [userData]);
-
-    useEffect(() => {
-        if (error) {
-            toast(`Error! ${error.message}`, { type: 'error' });
-        }
-    }, [error]);
 
     useEffect(() => {
         if (isAuth) {

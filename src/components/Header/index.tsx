@@ -1,4 +1,4 @@
-import { useEffect, MouseEvent } from 'react';
+import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Badge } from '@mui/material';
@@ -34,7 +34,7 @@ const StyledBadge = styled(Badge)`
     }
 `;
 
-const ButtonLogout = styled.button`
+const TransparentButton = styled.button`
     padding: 0;
     background: 0;
     border: 0;
@@ -55,9 +55,16 @@ const Header = ({ location }: HeaderProps): JSX.Element => {
     );
     const itemsQuantity = useSelector(itemsQuantitySelector);
 
-    const handleLogout = (event: MouseEvent) => {
+    const handleLogout = () => {
         localStorage.clear();
         window.location.reload();
+    };
+
+    const handleTabNavigate = (linkTo: string) => {
+        if (linkTo === ROUTE_NAMES.PRODUCTS) {
+            dispatch(savePreviousPage(1));
+        }
+        navigate(linkTo);
     };
 
     useEffect(() => {
@@ -69,34 +76,34 @@ const Header = ({ location }: HeaderProps): JSX.Element => {
     return (
         <Wrapper>
             <Navbar>
-                <Logo src={logo} alt="Bulbasaur icon" />
+                <TransparentButton
+                    type="button"
+                    onClick={() => {
+                        navigate(ROUTE_NAMES.PRODUCTS);
+                    }}
+                >
+                    <Logo src={logo} alt="Bulbasaur icon" />
+                </TransparentButton>
                 <TabsHolder value={location}>
                     <Tab
                         label="Shop"
                         value={ROUTE_NAMES.PRODUCTS}
                         onClick={() => {
-                            if (location !== ROUTE_NAMES.PRODUCTS) {
-                                dispatch(savePreviousPage(1));
-                                navigate(ROUTE_NAMES.PRODUCTS);
-                            }
+                            handleTabNavigate(ROUTE_NAMES.PRODUCTS);
                         }}
                     />
                     <Tab
                         label="About us"
                         value={ROUTE_NAMES.ABOUT}
                         onClick={() => {
-                            if (location !== ROUTE_NAMES.ABOUT) {
-                                navigate(ROUTE_NAMES.ABOUT);
-                            }
+                            handleTabNavigate(ROUTE_NAMES.ABOUT);
                         }}
                     />
                     <Tab
                         label="Contacts"
                         value={ROUTE_NAMES.CONTACT}
                         onClick={() => {
-                            if (location !== ROUTE_NAMES.CONTACT) {
-                                navigate(ROUTE_NAMES.CONTACT);
-                            }
+                            handleTabNavigate(ROUTE_NAMES.CONTACT);
                         }}
                     />
                 </TabsHolder>
@@ -109,9 +116,9 @@ const Header = ({ location }: HeaderProps): JSX.Element => {
                             <CartIcon />
                         </StyledBadge>
                     </Link>
-                    <ButtonLogout type="button" onClick={handleLogout}>
+                    <TransparentButton type="button" onClick={handleLogout}>
                         <LogoutOutlinedIcon />
-                    </ButtonLogout>
+                    </TransparentButton>
                 </IconHolder>
             </Navbar>
         </Wrapper>

@@ -48,7 +48,6 @@ const SignUpContainer = (): JSX.Element => {
         validationSchema: UserScheme,
         onSubmit: (): void => {
             const { confirm, ...userData } = values;
-
             const promise = makeRequest(userData);
 
             toast.promise(promise, {

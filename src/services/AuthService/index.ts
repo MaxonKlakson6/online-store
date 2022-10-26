@@ -23,8 +23,18 @@ class AuthService {
         }
     }
 
-    signUp(userData?: UserTypesToSignUp) {
-        return api.post(`${BASE_URL}/signup`, userData);
+    async signUp(userData?: UserTypesToSignUp) {
+        try {
+            const response = await api.post(`${BASE_URL}/signup`, userData);
+
+            if (axios.isAxiosError(response)) {
+                throw response;
+            }
+
+            return response;
+        } catch (error: any) {
+            throw error.response.data;
+        }
     }
 }
 
