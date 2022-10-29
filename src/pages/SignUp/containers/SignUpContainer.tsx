@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { ToastContainer, toast } from 'react-toastify';
+import { TimeoutId } from '@reduxjs/toolkit/dist/query/core/buildMiddleware/types';
 import 'react-toastify/dist/ReactToastify.css';
 
 import SignUpLayout from 'pages/SignUp/components/SignUpLayout';
@@ -9,15 +10,13 @@ import AuthBanner from 'components/AuthBanner';
 import SignUpForm from 'pages/SignUp/components/SignUpForm';
 
 import { useFetching } from 'hooks';
-import { signUp } from 'pages/SignUp/api/signUp';
+import AuthService from 'services/AuthService';
 
 import { ROUTE_NAMES } from 'router/routeNames';
 import { UserScheme } from 'scheme/UserScheme';
 import { TEXT } from 'constants/text';
 
-import { UserTypesToSignUp } from 'pages/SignUp/types/UserTypesToSignUp';
-import { SignUpResponse } from 'pages/SignUp/types/SignUpResponse';
-import { TimeoutId } from '@reduxjs/toolkit/dist/query/core/buildMiddleware/types';
+import { UserTypesToSignUp, SignUpResponse } from 'services/AuthService/types';
 
 const SignUpContainer = (): JSX.Element => {
     const navigate = useNavigate();
@@ -25,7 +24,7 @@ const SignUpContainer = (): JSX.Element => {
     const { data, isLoading, requestError, makeRequest } = useFetching<
         UserTypesToSignUp | undefined,
         SignUpResponse
-    >(signUp, false);
+    >(AuthService.signUp, false);
 
     const {
         values,
@@ -49,7 +48,6 @@ const SignUpContainer = (): JSX.Element => {
         validationSchema: UserScheme,
         onSubmit: (): void => {
             const { confirm, ...userData } = values;
-
             const promise = makeRequest(userData);
 
             toast.promise(promise, {

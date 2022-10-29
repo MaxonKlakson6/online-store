@@ -4,8 +4,11 @@ import styled from '@emotion/styled';
 import Card from 'components/Card';
 
 import { useAppSelector } from 'hooks';
+import { mergedWithCartSelector } from 'pages/Goods/selectors';
 
-import { PokemonCard } from 'types/PokemonCard';
+import { PokemonCard } from 'services/ProductsService/types';
+import { NewCartItem } from 'services/CartService/types';
+import { QuantityFunction } from 'hooks/useCart';
 
 const ProductsHolder = styled.div`
     display: grid;
@@ -18,22 +21,42 @@ interface ProductsBlockProps {
         event: MouseEvent<HTMLDivElement>,
         id: number
     ) => void;
+    handleAddProduct: (itemToAdd: NewCartItem) => void;
+    handleRemoveCartItem: (id: number) => void;
+    handleIncrementQuantity: QuantityFunction;
+    handleDecrementQuantity: QuantityFunction;
 }
 
-const ProductsBlock = ({ handleNavigateToProduct }: ProductsBlockProps) => {
-    const products = useAppSelector((state) => state.shop.data);
+interface MergedPokemonCard extends PokemonCard {
+    quantity?: number;
+}
+
+const ProductsBlock = ({
+    handleNavigateToProduct,
+    handleAddProduct,
+    handleRemoveCartItem,
+    handleIncrementQuantity,
+    handleDecrementQuantity,
+}: ProductsBlockProps): JSX.Element => {
+    const products = useAppSelector(mergedWithCartSelector);
+
     return (
         <ProductsHolder>
             {products &&
-                products.map((product: PokemonCard) => (
+                products.map((product: MergedPokemonCard) => (
                     <Card
                         key={product.id}
                         image={product.image}
                         alt={`${product.name} image`}
-                        handleNavigateToProduct={handleNavigateToProduct}
+                        quantity={product.quantity}
                         id={product.id}
                         title={product.name}
                         price={product.price}
+                        handleNavigateToProduct={handleNavigateToProduct}
+                        handleAddProduct={handleAddProduct}
+                        handleRemoveCartItem={handleRemoveCartItem}
+                        handleIncrementQuantity={handleIncrementQuantity}
+                        handleDecrementQuantity={handleDecrementQuantity}
                     />
                 ))}
         </ProductsHolder>

@@ -3,15 +3,23 @@ import { useNavigate } from 'react-router-dom';
 
 import GoodsLayout from 'pages/Goods/components/GoodsLayout';
 
-import { useAppDispatch, useAppSelector, usePagination } from 'hooks';
+import { useAppDispatch, useAppSelector, useCart, usePagination } from 'hooks';
 import { loadProducts, savePreviousPage } from 'pages/Goods/reducer';
-import { shopSelector } from 'pages/Goods/selectors';
+import { shopReducerSelector } from 'pages/Goods/selectors';
 
 import { ROUTE_NAMES } from 'router/routeNames';
+import BaseLayout from 'components/BaseLayout';
 
-const GoodsContainer = () => {
+const GoodsContainer = (): JSX.Element => {
     const dispatch = useAppDispatch();
-    const { isLoading, page: prevPage } = useAppSelector(shopSelector);
+    const { isLoading, page: prevPage } = useAppSelector(shopReducerSelector);
+
+    const {
+        handleAddProduct,
+        handleIncrementQuantity,
+        handleDecrementQuantity,
+        handleRemoveCartItem,
+    } = useCart();
 
     const navigate = useNavigate();
 
@@ -25,20 +33,29 @@ const GoodsContainer = () => {
     );
 
     useEffect(() => {
-        dispatch(loadProducts(page));
-
+        if (page > 0) {
+            dispatch(loadProducts(page));
+        }
         return () => {
-            dispatch(savePreviousPage(page));
+            if (page > 0) {
+                dispatch(savePreviousPage(page));
+            }
         };
     }, [page]);
 
     return (
-        <GoodsLayout
-            isLoading={isLoading}
-            handleChangePage={handleChangePage}
-            handleNavigateToProduct={handleNavigateToProduct}
-            page={page}
-        />
+        <BaseLayout location={ROUTE_NAMES.PRODUCTS}>
+            <GoodsLayout
+                isLoading={isLoading}
+                handleChangePage={handleChangePage}
+                handleNavigateToProduct={handleNavigateToProduct}
+                page={page}
+                handleAddProduct={handleAddProduct}
+                handleRemoveCartItem={handleRemoveCartItem}
+                handleIncrementQuantity={handleIncrementQuantity}
+                handleDecrementQuantity={handleDecrementQuantity}
+            />
+        </BaseLayout>
     );
 };
 

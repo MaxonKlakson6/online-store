@@ -1,57 +1,57 @@
 import { toast } from 'react-toastify';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { signIn } from 'pages/SignIn/api/signIn';
+import AuthService from 'services/AuthService';
 
-import { SignInTypes } from 'pages/SignIn/types/SignInTypes';
-import { ResponseType } from 'pages/SignIn/types/ResponseType';
+import {
+    SignInTypes,
+    SignInResponseType,
+    SignInData,
+} from 'services/AuthService/types';
 
 import { CONSTANTS } from 'constants/index';
+import { ApiError } from 'types/ApiError';
 
 interface signInState {
     isLoading: boolean;
-    data: ResponseType | null;
-    error: null | any;
-    isLogin: boolean;
+    userData: SignInData | null;
+    error: ApiError | null | undefined;
     isAuth: boolean;
 }
 
 const initialState: signInState = {
     isLoading: false,
-    data: null,
+    userData: null,
     error: null,
-    isLogin: false,
     isAuth: false,
 };
 
-export const login = createAsyncThunk(
-    'signIn/login',
-    async (
-        dataToLogin: SignInTypes,
-        { rejectWithValue }
-    ): Promise<ResponseType | any> => {
-        try {
-            const response = signIn(dataToLogin);
+export const login = createAsyncThunk<
+    SignInResponseType,
+    SignInTypes,
+    { rejectValue: ApiError }
+>('signIn/login', async (dataToLogin, { rejectWithValue }) => {
+    try {
+        const response = AuthService.signIn(dataToLogin);
 
-            toast.promise(response, {
-                pending: 'Waiting...',
-            });
+        toast.promise(response, {
+            pending: 'Waiting...',
+        });
 
-            await response;
+        await response;
 
-            return response as Promise<ResponseType>;
-        } catch (error) {
-            return rejectWithValue(error);
-        }
+        return response;
+    } catch (error) {
+        const apiError: ApiError = error as ApiError;
+        return rejectWithValue(apiError);
     }
-);
+});
 
 const signInSlice = createSlice({
     name: 'signIn',
     initialState,
     reducers: {
         resetLogin: (state) => {
-            state.isLogin = false;
             state.error = null;
         },
     },
@@ -63,13 +63,12 @@ const signInSlice = createSlice({
             const { address, roles, __v, accessToken, ...requiredData } =
                 response;
             state.isLoading = false;
-            state.data = requiredData;
+            state.userData = requiredData;
             state.isAuth = true;
-            state.isLogin = true;
             localStorage.setItem(CONSTANTS.ACCESS_TOKEN, accessToken);
         });
         builder.addCase(login.rejected, (state, { payload: error }) => {
-            state.error = error;
+            toast(`Error! ${error?.message}`, { type: 'error' });
             state.isLoading = false;
         });
     },

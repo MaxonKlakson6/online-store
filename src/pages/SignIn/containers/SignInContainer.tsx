@@ -20,7 +20,7 @@ const SignInContainer = (): JSX.Element => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const { data, isLoading, error, isLogin, isAuth } = useAppSelector(
+    const { userData, isLoading, isAuth } = useAppSelector(
         (state) => state.signIn
     );
 
@@ -46,9 +46,9 @@ const SignInContainer = (): JSX.Element => {
 
     useEffect(() => {
         let timeout: TimeoutId;
-        if (isLogin && data) {
+        if (isAuth && userData) {
             toast(
-                `Hello ${data.firstName}. You successfully log in. Now we redirect you to store page.`,
+                `Hello ${userData.firstName}. You successfully log in. Now we redirect you to store page.`,
                 {
                     type: 'success',
                 }
@@ -61,13 +61,7 @@ const SignInContainer = (): JSX.Element => {
         return () => {
             clearTimeout(timeout);
         };
-    }, [data]);
-
-    useEffect(() => {
-        if (error) {
-            toast(`Error! ${error.message}`, { type: 'error' });
-        }
-    }, [error]);
+    }, [userData]);
 
     useEffect(() => {
         if (isAuth) {

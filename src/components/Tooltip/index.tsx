@@ -1,7 +1,7 @@
-import { memo } from 'react';
+import { FC, memo } from 'react';
 import MuiTooltip, { TooltipProps } from '@mui/material/Tooltip';
 
-const Tooltip = ({ title, children, className }: TooltipProps) => (
+const Tooltip: FC<TooltipProps> = ({ title, children, className }) => (
     <MuiTooltip title={title} className={className}>
         {children}
     </MuiTooltip>

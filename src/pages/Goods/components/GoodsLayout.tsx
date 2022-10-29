@@ -1,12 +1,14 @@
 import { ChangeEvent, MouseEvent } from 'react';
 import styled from '@emotion/styled';
 
-import Header from 'components/Header';
 import BlockHeader from 'pages/Goods/components/BlockHeader';
 import ProductsHolder from 'pages/Goods/components/ProductsBlock';
 import Pagination from 'components/Pagination';
 
 import Progress from 'components/Progress';
+
+import { NewCartItem } from 'services/CartService/types';
+import { QuantityFunction } from 'hooks/useCart';
 
 import { TEXT } from 'constants/text';
 import banner from 'static/images/banner.jpg';
@@ -49,6 +51,10 @@ interface GoodsLayoutProps {
         event: MouseEvent<HTMLDivElement>,
         id: number
     ) => void;
+    handleAddProduct: (itemToAdd: NewCartItem) => void;
+    handleRemoveCartItem: (id: number) => void;
+    handleIncrementQuantity: QuantityFunction;
+    handleDecrementQuantity: QuantityFunction;
 }
 
 const GoodsLayout = ({
@@ -56,9 +62,12 @@ const GoodsLayout = ({
     page,
     handleChangePage,
     handleNavigateToProduct,
-}: GoodsLayoutProps) => (
+    handleAddProduct,
+    handleRemoveCartItem,
+    handleIncrementQuantity,
+    handleDecrementQuantity,
+}: GoodsLayoutProps): JSX.Element => (
     <div>
-        <Header location={0} />
         <ImageHolder>
             <ImageContentBlock>
                 <BlockHeader
@@ -75,6 +84,10 @@ const GoodsLayout = ({
             ) : (
                 <ProductsHolder
                     handleNavigateToProduct={handleNavigateToProduct}
+                    handleAddProduct={handleAddProduct}
+                    handleRemoveCartItem={handleRemoveCartItem}
+                    handleIncrementQuantity={handleIncrementQuantity}
+                    handleDecrementQuantity={handleDecrementQuantity}
                 />
             )}
         </ProductsBlock>

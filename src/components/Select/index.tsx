@@ -26,7 +26,13 @@ interface ISelect extends SelectProps {
     options: string[];
 }
 
-const Select = ({ label, options, value, name, onChange }: ISelect) => (
+const Select = ({
+    label,
+    options,
+    value,
+    name,
+    onChange,
+}: ISelect): JSX.Element => (
     <FormControl fullWidth>
         <Label>{label}</Label>
         <StyledSelect

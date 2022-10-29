@@ -23,7 +23,7 @@ const Pagination = ({
     disabled,
     className,
     onChange,
-}: PaginationProps) => (
+}: PaginationProps): JSX.Element => (
     <StyledPagination
         disabled={disabled}
         page={page}

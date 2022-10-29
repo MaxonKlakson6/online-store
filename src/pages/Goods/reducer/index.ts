@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { Products } from 'pages/Goods/types/Prducts';
+import { Products } from 'services/ProductsService/types';
 
-import { getProducts } from 'pages/Goods/api/getProducts';
+import ProductsService from 'services/ProductsService';
 
 interface ShopInitialState {
-    data: Products | null;
+    products: Products | null;
     errors: any;
     isLoading: boolean;
     page: number;
@@ -13,16 +13,16 @@ interface ShopInitialState {
 
 const initialState: ShopInitialState = {
     errors: null,
-    data: null,
+    products: null,
     isLoading: false,
     page: 1,
 };
 
-export const loadProducts = createAsyncThunk(
+export const loadProducts = createAsyncThunk<Products, number>(
     'shop/loadProducts',
-    async (page: number, { rejectWithValue }): Promise<Products | any> => {
+    async (page: number, { rejectWithValue }) => {
         try {
-            const response = await getProducts(page);
+            const response = await ProductsService.getProducts(page);
 
             return response;
         } catch (error) {
@@ -35,7 +35,10 @@ const shopSlice = createSlice({
     name: 'shop',
     initialState,
     reducers: {
-        savePreviousPage: (state, { payload: page }) => {
+        savePreviousPage: (
+            state,
+            { payload: page }: { type: string; payload: number }
+        ) => {
             state.page = page;
         },
     },
@@ -47,7 +50,7 @@ const shopSlice = createSlice({
             loadProducts.fulfilled,
             (state, { payload: products }) => {
                 state.isLoading = false;
-                state.data = products;
+                state.products = products;
             }
         );
         builder.addCase(loadProducts.rejected, (state, { payload: error }) => {

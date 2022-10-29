@@ -3,7 +3,7 @@ import axios from 'axios';
 import { CONSTANTS } from 'constants/index';
 
 const api = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://poke-store-api.herokuapp.com/',
 });
 
 api.interceptors.request.use((request) => {
@@ -19,7 +19,7 @@ api.interceptors.request.use((request) => {
 api.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error.response.data.message === 'Unauthorized') {
+        if (error.response.data.statusCode === 401) {
             localStorage.clear();
             window.location.reload();
         }
